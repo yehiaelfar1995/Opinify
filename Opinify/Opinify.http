@@ -1,0 +1,6 @@
+@Opinify_HostAddress = http://localhost:5138
+
+GET {{Opinify_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
