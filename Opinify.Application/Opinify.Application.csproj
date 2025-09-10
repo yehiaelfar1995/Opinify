@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Opinify.Domain\Opinify.Infrastructure.csproj" />
+    <ProjectReference Include="..\Opnifiy.Infrastructure\Opnifiy.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

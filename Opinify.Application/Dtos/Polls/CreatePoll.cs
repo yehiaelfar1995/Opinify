@@ -3,6 +3,7 @@
     public class CreatePollDto
     {
         public string Title { get; set; }
+        public bool isPublic { get; set; }
         public List<CreateQuestionDto> Questions { get; set; }
     }
 

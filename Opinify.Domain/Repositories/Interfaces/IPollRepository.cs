@@ -3,8 +3,9 @@ namespace Opinify.Infrastructure.Repositories.Interfaces
 {
     public interface IPollRepository
     {
-        Task<Poll> GetPollAsync(int id);
+        Task<Poll> GetPollByIdAsync(int id);
         Task CreatePollAsync(Poll poll);
-        Task SaveChangesAsync();
+        Task<List<Poll>> GetPolls(string anonymousId);
+        Task<List<Poll>> GetAllUserPollsAsync(int? userId, string anonymousId);
     }
 }
