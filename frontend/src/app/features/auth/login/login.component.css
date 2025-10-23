@@ -1,0 +1,5 @@
+/* Additional page-specific tweaks (optional) */
+.text-red-500 {
+  color: #ef4444;
+  margin-top: 0.75rem;
+}

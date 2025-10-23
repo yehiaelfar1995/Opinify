@@ -1,0 +1,20 @@
+<div class="my-polls">
+  <h1 class="page-title">My Polls</h1>
+
+  <div *ngIf="myPolls.length === 0" class="empty-message">
+    <p>You don’t have any polls yet. Create one now!</p>
+    <button routerLink="/polls/create" class="btn-primary">Create Poll</button>
+  </div>
+
+  <div class="poll-list">
+    <div *ngFor="let poll of myPolls" class="card poll-card" (click)="viewPoll(poll)">
+      <h2>{{ poll.title }}</h2>
+      <p class="meta">
+        Created: {{ poll.createdAt | date:'mediumDate' }} | 
+        <span [ngClass]="poll.isPublic ? 'public' : 'private'">
+          {{ poll.isPublic ? 'Public' : 'Private' }}
+        </span>
+      </p>
+    </div>
+  </div>
+</div>

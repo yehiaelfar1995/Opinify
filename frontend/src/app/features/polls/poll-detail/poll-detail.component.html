@@ -1,0 +1,23 @@
+<div class="poll-container" *ngIf="poll">
+  <h1 class="poll-title">{{ poll.title }}</h1>
+
+  <div *ngIf="currentQuestion" class="question-card card shadow">
+    <div class="card-body">
+      <h4 class="question-text">{{ currentQuestion.text }}</h4>
+
+      <div class="answers">
+        <button 
+          *ngFor="let answer of currentQuestion.answers"
+          (click)="vote(answer)"
+          class="btn btn-outline-primary w-100 my-2"
+        >
+          {{ answer.text }}
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="message mt-3" *ngIf="message">
+    <div class="alert alert-info">{{ message }}</div>
+  </div>
+</div>

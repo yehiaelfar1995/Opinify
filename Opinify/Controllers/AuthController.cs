@@ -36,7 +36,7 @@ namespace PollsApp.Api.Controllers
             if (!result.Succeeded)
                 return BadRequest(result.Errors);
 
-            return Ok("User registered successfully!");
+            return Ok(new { message = "Registration successful" });
         }
 
         [HttpPost("login")]

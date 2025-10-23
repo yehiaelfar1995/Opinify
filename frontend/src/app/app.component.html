@@ -1,0 +1,27 @@
+<nav class="navbar">
+  <div class="logo" routerLink="/">Opinify</div>
+  <ul class="nav-links">
+    <li><a routerLink="/">Home</a></li>
+    <li><a routerLink="/polls/create">Create Poll</a></li>
+    <li><a routerLink="/polls">My Polls</a></li>
+
+    <li *ngIf="!isLoggedIn">
+      <button class="btn-auth" (click)="goToLogin()">Login</button>
+    </li>
+    <li *ngIf="isLoggedIn">
+      <button class="btn-auth" (click)="logout()">Logout</button>
+    </li>
+
+    <!-- Theme Toggle -->
+    <li class="theme-toggle">
+      <label class="switch">
+        <input type="checkbox" (change)="toggleTheme()">
+        <span class="slider"></span>
+      </label>
+    </li>
+  </ul>
+</nav>
+
+
+<!-- Routed Pages -->
+<router-outlet></router-outlet>

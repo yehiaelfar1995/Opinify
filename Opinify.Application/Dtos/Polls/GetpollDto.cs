@@ -28,5 +28,14 @@ namespace Opinify.Application.Dtos.Polls
             public int AnswerId { get; set; }
             public string Text { get; set; } = string.Empty;
             public int Votes { get; set; }
-        }    
+        }
+    public class GetMyPollDto
+    {
+        public int PollId { get; set; }
+        public string Title { get; set; } = string.Empty;
+        public bool isPublic { get; set; }
+        public DateTime CreatedAt { get; set; }
+
+    }
+
 }

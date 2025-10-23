@@ -1,0 +1,160 @@
+/* =========================
+   Layout
+========================= */
+.container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+}
+
+.card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* =========================
+   Headings
+========================= */
+h2 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  color: #111827;
+}
+
+h5 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #1f2937;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* =========================
+   Form Controls
+========================= */
+.form-group {
+  margin-bottom: 1.25rem;
+}
+
+label {
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.form-control {
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  padding: 0.75rem 1rem;
+  transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-control:focus {
+  border-color: #7c3aed;
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.3);
+}
+
+/* =========================
+   Buttons
+========================= */
+.btn {
+  border-radius: 8px;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.btn-primary {
+  background: linear-gradient(90deg, #7c3aed, #00e0ff);
+  border: none;
+  color: #fff;
+}
+
+.btn-primary:hover {
+  box-shadow: 0 0 12px rgba(124, 58, 237, 0.4);
+}
+
+.btn-outline-secondary,
+.btn-outline-primary,
+.btn-outline-danger {
+  border-width: 1.5px;
+}
+
+/* =========================
+   Option Blocks
+========================= */
+.option-block {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.option-block .form-control {
+  flex: 1;
+}
+
+/* =========================
+   Divider
+========================= */
+hr {
+  border: none;
+  border-top: 1px solid #e5e7eb;
+  margin: 1.5rem 0;
+}
+
+/* =========================
+   Dark Mode
+========================= */
+:host-context(.dark) .card {
+  background-color: #1e293b;
+  border: 1px solid #334155;
+  color: #f1f5f9;
+}
+
+:host-context(.dark) h2,
+:host-context(.dark) h5,
+:host-context(.dark) label {
+  color: #f1f5f9;
+}
+
+:host-context(.dark) .form-control {
+  background-color: #334155;
+  border: 1px solid #475569;
+  color: #f1f5f9;
+}
+
+:host-context(.dark) .form-control::placeholder {
+  color: #cbd5e1;
+}
+
+:host-context(.dark) hr {
+  border-top: 1px solid #475569;
+}
+
+:host-context(.dark) .btn-outline-secondary,
+:host-context(.dark) .btn-outline-primary,
+:host-context(.dark) .btn-outline-danger {
+  color: #f1f5f9;
+  border-color: #64748b;
+}
+
+:host-context(.dark) .btn-outline-secondary:hover,
+:host-context(.dark) .btn-outline-primary:hover,
+:host-context(.dark) .btn-outline-danger:hover {
+  background-color: #475569;
+  border-color: #94a3b8;
+}

@@ -1,0 +1,56 @@
+.my-polls {
+  padding: 2rem;
+}
+
+.page-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+.poll-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+}
+
+.poll-card {
+  cursor: pointer;
+  max-width: 350px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.poll-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 20px rgba(0, 224, 255, 0.25);
+}
+
+.meta {
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+  color: #bbb;
+}
+
+.public {
+  color: #00e0ff;
+  font-weight: 600;
+}
+
+.private {
+  color: #e74c3c;
+  font-weight: 600;
+}
+
+/* Light mode adjustments */
+body.light-mode .meta {
+  color: #555;
+}
+
+body.light-mode .public {
+  color: #7c3aed;
+}
+
+body.light-mode .private {
+  color: #d63031;
+}

@@ -20,7 +20,7 @@ namespace Opinify.Application.Managers
             _PollRepository = PollRepository;              
         }
 
-        public async Task<int> CreatePollAsync(CreatePollDto poll, ClaimsPrincipal user, string? anonymousId)
+        public async Task<CreatedPollDto> CreatePollAsync(CreatePollDto poll, ClaimsPrincipal user, string? anonymousId)
         {
            
             if (poll == null) throw new ArgumentNullException("poll cannot be Null");
@@ -43,8 +43,11 @@ namespace Opinify.Application.Managers
             }
             else
             {
-                
-                pollTobeCreated.AnonymousIdentifier = anonymousId ?? Guid.NewGuid().ToString();
+
+                pollTobeCreated.AnonymousIdentifier = anonymousId;
+
+                pollTobeCreated.AnonymousIdentifier = !string.IsNullOrEmpty(anonymousId) ? anonymousId
+            : Guid.NewGuid().ToString();
                 var existingCount =
                    await _PollRepository.GetPolls(anonymousId);
                 
@@ -52,11 +55,17 @@ namespace Opinify.Application.Managers
                 if (existingCount.Count() >= 2)
                     throw new Exception("Anonymous users can only create 2 polls per month.");
             }
-           await  _PollRepository.CreatePollAsync(pollTobeCreated);
-            return pollTobeCreated.Id;
+     var createdPoll= await  _PollRepository.CreatePollAsync(pollTobeCreated);
+            
+            return new CreatedPollDto
+            {
+                Title = createdPoll.Name,
+                anymousId = createdPoll.AnonymousIdentifier
+
+            }; 
         }
 
-        public async Task<List<GetPollDto>> GetUserPollAsync(ClaimsPrincipal user, string anonymousId)
+        public async Task<List<GetMyPollDto>> GetUserPollAsync(ClaimsPrincipal user, string anonymousId)
         {
             int UserId=0;
             if (user.Identity?.IsAuthenticated ?? false)
@@ -64,10 +73,18 @@ namespace Opinify.Application.Managers
              UserId = int.Parse(user.FindFirst(ClaimTypes.NameIdentifier)!.Value);
             }
 
-            var polls =  MapToDtoList( await _PollRepository.GetAllUserPollsAsync(UserId, anonymousId));
+            var polls = MapToMyPollDtoList( await _PollRepository.GetAllUserPollsAsync(UserId, anonymousId));
 
             return polls;
         }
+
+        public async Task<GetPollDto> GetByIdPollAsync(int id)
+        {
+            var poll = await _PollRepository.GetPollByIdAsync(id);
+            var mappedPoll= MapGetPoll(poll);
+           return mappedPoll;    
+        }
+
 
         private Poll MapPoll(CreatePollDto poll)     
         {
@@ -114,6 +131,29 @@ namespace Opinify.Application.Managers
                 }).ToList()
             };
         }
+
+        private GetMyPollDto MapMyPoll(Poll poll)
+        {
+            return new GetMyPollDto
+            {
+                PollId = poll.Id,
+                Title = poll.Name,
+                isPublic = poll.IsPublic,
+                CreatedAt = poll.CreatedAt,
+               
+            };
+        }
+
+        private List<GetMyPollDto> MapToMyPollDtoList(List<Poll> polls)
+        {
+            var dtoList = new List<GetMyPollDto>();
+            foreach (var poll in polls)
+            {
+                dtoList.Add(MapMyPoll(poll));
+            }
+            return dtoList;
+        }
+
         private List<GetPollDto> MapToDtoList(List<Poll> polls)
         {
             var dtoList = new List<GetPollDto>();

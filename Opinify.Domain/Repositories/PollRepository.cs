@@ -13,10 +13,11 @@ namespace Opinify.Infrastructure.Repositories
             _context = context;
 
         }
-        public async Task CreatePollAsync(Poll poll)
+        public async Task<Poll> CreatePollAsync(Poll poll)
         {
             _context.Polls.Add(poll);
             _context.SaveChanges();
+            return poll;
 
         }
 
@@ -25,7 +26,7 @@ namespace Opinify.Infrastructure.Repositories
             return await _context.Polls
                 .Include(p => p.Questions)         // Include Questions
                 .ThenInclude(q => q.Answers)       // Include Answers inside Questions
-                .FirstOrDefaultAsync(p => p.Id == id);
+                .FirstOrDefaultAsync(p => p.Id == id && !p.IsDeleted);
         }
         public async Task<List<Poll>> GetPolls(string anonymousId)
         {

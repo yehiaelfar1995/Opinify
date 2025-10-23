@@ -1,0 +1,57 @@
+<div class="container py-5">
+  <div class="card shadow-lg p-4">
+    <h2 class="mb-4 text-center">Create a New Poll</h2>
+
+    <!-- Poll Title -->
+    <div class="mb-3">
+      <label for="title" class="form-label fw-bold">Poll Title</label>
+      <input id="title" [(ngModel)]="title" class="form-control" placeholder="Enter poll title" />
+    </div>
+
+    <!-- Public / Private Toggle -->
+    <div class="form-check form-switch mb-4">
+      <input type="checkbox" id="isPublic" [(ngModel)]="isPublic" class="form-check-input" />
+      <label for="isPublic" class="form-check-label">Make this poll public</label>
+    </div>
+
+    <!-- Questions -->
+    <div *ngFor="let question of questions; let qIndex = index; trackBy: trackByIndex" class="mb-4">
+      <div class="card border-0 shadow-sm p-3">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h5 class="mb-0">Question {{ qIndex + 1 }}</h5>
+          <button class="btn btn-outline-danger btn-sm" (click)="removeQuestion(qIndex)" *ngIf="questions.length > 1">
+            Remove
+          </button>
+        </div>
+
+        <!-- Question Text -->
+        <input [(ngModel)]="question.questionText" class="form-control mb-3" placeholder="Enter your question" />
+
+        <!-- Options -->
+        <div *ngFor="let option of question.options; let oIndex = index; trackBy: trackByIndex" class="input-group mb-2">
+          <input
+            [ngModel]="option"
+            (ngModelChange)="updateOption(qIndex, oIndex, $event)"
+            class="form-control"
+            placeholder="Enter option"
+          />
+          <button class="btn btn-outline-danger" (click)="removeOption(qIndex, oIndex)" *ngIf="question.options.length > 2">
+            ✖
+          </button>
+        </div>
+
+        <button class="btn btn-outline-secondary btn-sm mt-2" (click)="addOption(qIndex)">
+          + Add Option
+        </button>
+      </div>
+    </div>
+
+    <!-- Add Question -->
+    <button class="btn btn-outline-primary mb-4" (click)="addQuestion()">+ Add Question</button>
+
+    <!-- Submit -->
+    <div class="text-center">
+      <button class="btn btn-success btn-lg px-5" (click)="createPoll()">Create Poll</button>
+    </div>
+  </div>
+</div>

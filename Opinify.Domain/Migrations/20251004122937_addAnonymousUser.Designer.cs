@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Opnifiy.Infrastructure;
 
@@ -11,9 +12,11 @@ using Opnifiy.Infrastructure;
 namespace Opinify.Infrastructure.Migrations
 {
     [DbContext(typeof(OpinifyDbContext))]
-    partial class OpinifyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251004122937_addAnonymousUser")]
+    partial class addAnonymousUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

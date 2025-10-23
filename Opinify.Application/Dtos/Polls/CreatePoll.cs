@@ -18,4 +18,12 @@
         public int OptionId { get; set; }
         public string UserId { get; set; }
     }
+    public class CreatedPollDto
+    {
+        public string Title { get; set; }
+        public bool isPublic { get; set; }
+        public string anymousId { get; set; }
+        public List<CreateQuestionDto> Questions { get; set; }
+    }
+
 }

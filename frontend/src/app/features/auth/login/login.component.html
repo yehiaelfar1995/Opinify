@@ -1,0 +1,35 @@
+<div class="auth-container">
+  <div class="auth-card">
+    <div class="logo" routerLink="/">Opinify</div>
+    <h2 class="login-title">Login</h2>
+
+    <form (ngSubmit)="login()">
+      <input
+        type="text"
+        [(ngModel)]="username"
+        name="username"
+        placeholder="Username"
+        class="auth-input"
+        required
+      />
+
+      <input
+        type="password"
+        [(ngModel)]="password"
+        name="password"
+        placeholder="Password"
+        class="auth-input"
+        required
+      />
+
+      <button type="submit" class="auth-btn">Login</button>
+    </form>
+
+    <p class="auth-footer">
+      Don’t have an account?
+      <a routerLink="/register">Register</a>
+    </p>
+
+    <p *ngIf="error" class="text-red-500 mt-2">{{ error }}</p>
+  </div>
+</div>
